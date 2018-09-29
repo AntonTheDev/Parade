@@ -13,8 +13,16 @@ private struct PDAssociatedKey {
     static var progressAnimator = "cachedProgressAnimator"
 }
 
-internal extension UIView {
-    
+public extension UIView
+{
+    public func clearParallaxCachedAnimator()
+    {
+        cachedProgressAnimator = nil
+    }
+}
+
+internal extension UIView
+{    
     var cachedProgressAnimator: PDAnimator?
     {
         get

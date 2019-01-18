@@ -11,6 +11,7 @@ import UIKit
 
 public class PDAnimationMaker
 {
+    var associatedScrollView : UIScrollView?
     
     /// Array that keeps all the UIViews as keys to generate the Views states after constructions
     fileprivate var animationsViews = [UIView]()
@@ -43,12 +44,17 @@ public class PDAnimationMaker
             
             if let viewInitialState = initialStates[view]
             {
-                animation.fromState = viewInitialState.constructedState()
+                animation.fromState = viewInitialState.constructedState(fromState: true)
+                
+                animation.view?.layer.transform = CATransform3DIdentity
+                animation.view?.transform = CGAffineTransform.identity
+                
+                
             }
             
             if let viewFinalState = finalStates[view]
             {
-                animation.toState = viewFinalState.constructedState()
+                animation.toState = viewFinalState.constructedState(fromState: false)
             }
             
             newAnimatedViews.append(animation)
@@ -57,7 +63,7 @@ public class PDAnimationMaker
         let animator = PDAnimator()
         animator.animatedViews = newAnimatedViews
         animator.attachedAnimatableViews = newAnimatableViews as? [PDAnimatableType]
-       
+        animator.associatedScrollView = associatedScrollView
         return animator
     }
     

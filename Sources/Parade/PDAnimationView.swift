@@ -20,7 +20,6 @@ import UIKit
  **/
 public class PDAnimatorView
 {
-    
     /// A weak reference to the view that is being animated
     weak var view : UIView?
     
@@ -160,7 +159,11 @@ public class PDAnimatorView
                     
                     if propKey == "transform3D"
                     {
-                        stateProperty.propertyValue = view?.layer.value(forKey: "transform")
+                        stateProperty.propertyValue = CATransform3DIdentity
+                    }
+                    else if propKey == "transform"
+                    {
+                        stateProperty.propertyValue = CGAffineTransform.identity
                     }
                     else
                     {

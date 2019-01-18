@@ -38,6 +38,8 @@ import UIKit
  **/
 public class PDAnimator
 {
+    /// A weak reference to the assocated scrollView
+    weak var associatedScrollView : UIScrollView?
     
     /// The animations to interpolate over
     var animatedViews = [PDAnimatorView]()
@@ -57,9 +59,10 @@ public class PDAnimator
     ///
     /// - Parameter callback: an animation builder instance
     /// - Returns: preconfigured animation that interpolates between states
-    public class func newVerticalAnimator(_ callback : (_ animator : PDAnimationMaker) -> Void) -> PDAnimator
+    public class func newVerticalAnimator(forScrollView scrollView: UIScrollView?, _ callback : (_ animator : PDAnimationMaker) -> Void) -> PDAnimator
     {
         let newAnimator = PDAnimationMaker()
+        newAnimator.associatedScrollView = scrollView
         callback(newAnimator)
         return newAnimator.constructedAnimator()!
     }
@@ -71,7 +74,7 @@ public class PDAnimator
     ///
     /// - Parameter callback: an animation builder instance
     /// - Returns: preconfigured animation that interpolates between states
-    public class func newHorizontalAnimator(_ callback : (_ animator : PDAnimationMaker) -> Void) -> PDAnimator
+    public class func newHorizontalAnimator(forScrollView scrollView: UIScrollView?, _ callback : (_ animator : PDAnimationMaker) -> Void) -> PDAnimator
     {
         let newAnimationMaker = PDAnimationMaker()
         

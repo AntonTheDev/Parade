@@ -20,7 +20,7 @@ public class PDAnimatorViewMaker
     /// This method returns a constrcuted PDAnimatorViewState
     ///
     /// - Returns: constucted instance of an PDAnimatorViewState
-    internal func constructedState() -> PDAnimatorViewState?
+    internal func constructedState(fromState : Bool) -> PDAnimatorViewState?
     {
         guard propertyStates.keys.count > 0 else {
             return nil
@@ -30,7 +30,17 @@ public class PDAnimatorViewMaker
         
         for (key, propertyState) in propertyStates
         {
-            animationState.animatableProperties[key] = propertyState.constructedPropertyState()
+            let property = propertyState.constructedPropertyState()
+            
+            if fromState, property.propertyKey == "transform" {
+                property.propertyValue = CGAffineTransform.identity
+            }
+            
+            if fromState, property.propertyKey == "transform3D" {
+                property.propertyValue = CATransform3DIdentity
+            }
+            
+            animationState.animatableProperties[key] = property
         }
         
         return animationState

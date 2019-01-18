@@ -32,10 +32,11 @@ extension UIScrollView {
     /// Call this method to initialize the contentOffset highjacking
     final public class func initializeParade()
     {
+        /*
         swizzleSelector(self,
                         originalSelector: #selector(UIScrollView.setContentOffset(_:animated:)),
                         swizzledSelector: #selector(UIScrollView.swizzledSetContentOffset(_:animated:)))
-        
+        */
         swizzleSelector(self,
                         originalSelector: #selector(getter : UIScrollView.contentOffset),
                         swizzledSelector: #selector(getter : UIScrollView.swizzledContentOffset))
@@ -57,21 +58,21 @@ extension UIScrollView {
     @objc public func swizzledSetContentOffset(_ contentOffset : CGPoint, animated: Bool)
     {
         swizzledSetContentOffset(contentOffset, animated: animated)
-        updateViews()
+       // updateViews(scrollView: self)
     }
     
     /// The swizzed ContentOffset method (1 input setter)
     @objc public func swizzledSetContentOffset(_ contentOffset: CGPoint)
     {
         swizzledSetContentOffset(contentOffset) // not recursive
-        updateViews()
+        updateViews(scrollView: self)
     }
 }
 
 extension UIScrollView {
     
     /// This is called by the swizzled method
-    func updateViews()
+    func updateViews(scrollView : UIScrollView? )
     {
         var views : [UIView] = [UIView]()
         
@@ -98,6 +99,10 @@ extension UIScrollView {
             if progressAnimator == nil  {
                 view.cachedProgressAnimator = animatableObject.configuredAnimator()
                 progressAnimator = view.cachedProgressAnimator!
+            }
+            
+            if scrollView != progressAnimator?.associatedScrollView {
+                return
             }
             
             let relativeCenter = self.convert(view.center, to: UIScreen.main.coordinateSpace)

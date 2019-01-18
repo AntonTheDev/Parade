@@ -12,7 +12,9 @@ import UIKit
 extension CGFloat
 {
     func progressValue(to toValue : CGFloat, atProgress progress : CGFloat) -> CGFloat {
-        return self + ((toValue - self) * progress)
+        let value = self + ((toValue - self) * progress)
+        print(toValue, progress, value)
+        return value
     }
 }
 
@@ -79,14 +81,14 @@ extension CGRect
 extension CGAffineTransform
 {
     func progressValue(to toTransform : CGAffineTransform, atProgress progress : CGFloat) -> CGAffineTransform {
-        
+ 
         let aDifference  = a.progressValue(to: toTransform.a, atProgress: progress)
         let bDifference  = b.progressValue(to: toTransform.b, atProgress: progress)
         let cDifference  = c.progressValue(to: toTransform.c, atProgress: progress)
         let dDifference  = d.progressValue(to: toTransform.d, atProgress: progress)
         let txDifference = tx.progressValue(to: toTransform.tx, atProgress: progress)
         let tyDifference = ty.progressValue(to: toTransform.ty, atProgress: progress)
-       
+ 
         return CGAffineTransform(a: aDifference, b: bDifference, c: cDifference, d: dDifference, tx: txDifference, ty: tyDifference)
     }
 }

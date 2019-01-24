@@ -13,7 +13,6 @@ extension CGFloat
 {
     func progressValue(to toValue : CGFloat, atProgress progress : CGFloat) -> CGFloat {
         let value = self + ((toValue - self) * progress)
-        print(toValue, progress, value)
         return value
     }
 }

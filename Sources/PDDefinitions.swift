@@ -24,7 +24,7 @@ public protocol PDAnimatableType
     func configuredAnimator() -> PDAnimator
 }
 
-protocol AnimatableScrollViewDelegate : UIScrollViewDelegate
+public protocol AnimatableScrollViewDelegate : UIScrollViewDelegate
 {
     func enableParallax() -> Bool
 }

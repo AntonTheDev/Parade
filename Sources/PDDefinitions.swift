@@ -21,7 +21,12 @@ import UIKit
 public protocol PDAnimatableType
 {
     // The progress animator definition that interpolates animatable properties
-    func configuredAnimator() -> PDAnimator;
+    func configuredAnimator() -> PDAnimator
+}
+
+protocol AnimatableScrollViewDelegate : UIScrollViewDelegate
+{
+    func enableParallax() -> Bool
 }
 
 internal enum PDProgressDirection

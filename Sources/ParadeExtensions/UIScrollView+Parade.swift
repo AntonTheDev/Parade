@@ -74,6 +74,12 @@ extension UIScrollView {
     /// This is called by the swizzled method
     func updateViews(scrollView : UIScrollView? )
     {
+        guard let delegate = self.delegate as? AnimatableScrollViewDelegate,
+            delegate.enableParallax()
+        {
+            return
+        }
+        
         var views : [UIView] = [UIView]()
         
         if let collectionSelf = self as? UICollectionView

@@ -115,7 +115,7 @@ extension ParallaxDoubleImageCollectionViewCell : PDAnimatableType
         // The offscreen alpha adjustment
         let offScreenAlpha           = CGFloat(0.0)
         
-        return PDAnimator.newVerticalAnimator { (animator) in
+        return PDAnimator.newVerticalAnimator(forScrollView: self.superview as? UIScrollView) { (animator) in
             
             animator.startEndState(for: contentView, { (s) in
                 

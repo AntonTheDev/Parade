@@ -63,7 +63,7 @@ extension ParallaxImageView : PDAnimatableType
         let startingCenter       = CGPoint(x: scrollingImageView.center.x, y: scrollingImageView.center.y - bounds.height * (0.75 / 2.0))
         let finalCenter          = CGPoint(x: scrollingImageView.center.x, y: scrollingImageView.center.y - bounds.height * (0.75 / 2.0))
         
-        return PDAnimator.newVerticalAnimator { (animator) in
+        return PDAnimator.newVerticalAnimator(forScrollView: self.superview as? UIScrollView) { (animator) in
             
             animator.startState(for: scrollingImageView, { (s) in
                 

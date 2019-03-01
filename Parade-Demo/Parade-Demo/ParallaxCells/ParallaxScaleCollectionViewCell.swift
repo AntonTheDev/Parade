@@ -70,7 +70,7 @@ extension ParallaxScaleCollectionViewCell : PDAnimatableType
         // The custom animation range
         let animatioRange : ClosedRange<CGFloat> = 0.3...1.0
         
-        return PDAnimator.newVerticalAnimator { (animator) in
+        return PDAnimator.newVerticalAnimator(forScrollView: self.superview as? UIScrollView) { (animator) in
             
             animator.startEndState(for: contentView, { (s) in
                 

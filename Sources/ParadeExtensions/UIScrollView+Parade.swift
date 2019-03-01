@@ -119,14 +119,74 @@ extension UIScrollView {
                 
                 if let progress = verticalProgress(at: relativeCenter,
                                                    to : self.bounds.height) {
-                    progressAnimator!.interpolateViewAnimation(forProgress: progress)
+                    
+                    switch progress {
+                    case .verticalAboveCenter(let progressValue):
+                        
+                        if progressValue > -1.1 {
+                            progressAnimator!.interpolateViewAnimation(forProgress: progress)
+                        }
+                    case  .verticalBelowCenter(let progressValue):
+                        
+                        if progressValue < 1.1 {
+                            progressAnimator!.interpolateViewAnimation(forProgress: progress)
+                        }
+                        
+                    case .verticalCenter:
+                    
+                        progressAnimator!.interpolateViewAnimation(forProgress: progress)
+                   
+                    case .horizontalRightCenter(let progressValue),
+                         .horizontalLeftCenter(let progressValue):
+                       
+                        if progressValue >= 0.0 {
+                            progressAnimator!.interpolateViewAnimation(forProgress: progress)
+                        }
+                   
+                    case .horizontalCenter:
+                       
+                        progressAnimator!.interpolateViewAnimation(forProgress: progress)
+                    }
+                 
+                    
+                   // progressAnimator!.interpolateViewAnimation(forProgress: progress)
                 }
                 
             case .horizontal:
                 
                 if let progress = horizontalProgress(at: relativeCenter,
                                                      to : self.bounds.width) {
-                    progressAnimator!.interpolateViewAnimation(forProgress: progress)
+                    
+                    switch progress {
+                    case .verticalAboveCenter(let progressValue):
+                        
+                        if progressValue > -1.1 {
+                            progressAnimator!.interpolateViewAnimation(forProgress: progress)
+                        }
+                    case  .verticalBelowCenter(let progressValue):
+                        
+                        if progressValue < 1.1 {
+                            progressAnimator!.interpolateViewAnimation(forProgress: progress)
+                        }
+                        
+                    case .verticalCenter:
+                    
+                        progressAnimator!.interpolateViewAnimation(forProgress: progress)
+                   
+                    case .horizontalRightCenter(let progressValue),
+                         .horizontalLeftCenter(let progressValue):
+                       
+                        if progressValue >= 0.0 {
+                            progressAnimator!.interpolateViewAnimation(forProgress: progress)
+                        }
+                        
+                    case .horizontalCenter:
+                       
+                        progressAnimator!.interpolateViewAnimation(forProgress: progress)
+                    }
+                    
+                
+            
                 }
             }
         }
@@ -178,8 +238,8 @@ extension UIScrollView {
         let relativePercent = (progressValue - (relativeValue / 2.0)) / relativeValue
         
         if relativePercent == 0.0 { return  0.0 }
-        if relativePercent <= -1.0 { return -1.0 }
-        if relativePercent >=  1.0 { return  1.0 }
+        if relativePercent <= -1.1 { return -1.1 }
+        if relativePercent >=  1.1 { return  1.1 }
   
         return relativePercent
     }

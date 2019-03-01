@@ -66,7 +66,7 @@ extension ParallaxImageCollectionViewCell : PDAnimatableType
         // Final center for the parallax image view
         let finalImageCenter          = CGPoint(x: parallaxImageView.center.x, y: parallaxImageView.center.y + 340.0)
         
-        return PDAnimator.newVerticalAnimator { (animator) in
+        return PDAnimator.newVerticalAnimator(forScrollView: self.superview as? UIScrollView) { (animator) in
             
             animator.startEndState(for: contentView, { (s) in
                 

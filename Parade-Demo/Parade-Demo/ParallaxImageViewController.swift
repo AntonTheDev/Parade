@@ -64,6 +64,13 @@ class ParallaxImageViewController : UIViewController {
         }()
 }
 
+extension ParallaxImageViewController : AnimatableScrollViewDelegate
+{
+    func enableParallax() -> Bool {
+        return true
+    }
+}
+
 
 // MARK: - UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout
 

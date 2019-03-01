@@ -90,7 +90,7 @@ extension ParallaxTheEndCollectionViewCell : PDAnimatableType
         
         let alphaAnimationRange    : ClosedRange<CGFloat>       = 0.4...1.0
         
-        return PDAnimator.newVerticalAnimator { (animator) in
+        return PDAnimator.newVerticalAnimator(forScrollView: self.superview as? UIScrollView) { (animator) in
             
             animator.startState(for: contentView, { (s) in
                 

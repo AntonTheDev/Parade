@@ -102,7 +102,7 @@ extension ParallaxIntroCollectionViewCell: PDAnimatableType
         // Size is used so that it redraws the view and does not stretch it
         let offScreenDotViewSize         = progressView.bounds.size.scaledValue(width: 0.8, height : 3.0)
         
-        return PDAnimator.newVerticalAnimator { (animator) in
+        return PDAnimator.newVerticalAnimator(forScrollView: self.superview as? UIScrollView) { (animator) in
             
             animator.endState(for: logoImageView, { (s) in
                 

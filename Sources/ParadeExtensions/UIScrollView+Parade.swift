@@ -75,7 +75,7 @@ extension UIScrollView {
     func updateViews(scrollView : UIScrollView? )
     {
         guard let delegate = self.delegate as? AnimatableScrollViewDelegate,
-            delegate.enableParallax()
+            delegate.enableParallax() else 
         {
             return
         }

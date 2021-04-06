@@ -25,7 +25,6 @@ class ParallaxImageViewController : UIViewController {
         {
             collectionView.contentInsetAdjustmentBehavior = .never
         }
-        
         setupInterface()
     }
     

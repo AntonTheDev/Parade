@@ -82,15 +82,15 @@ extension UIScrollView {
         
         var views : [UIView] = [UIView]()
         
-        if let collectionSelf = self as? UICollectionView
+        if let collectionSelf = self as? UICollectionView, collectionSelf.alpha == 1.0
         {
             views = collectionSelf.visibleCells
         }
-        else if let collectionSelf = self as? UITableView
+        else if let collectionSelf = self as? UITableView, collectionSelf.alpha == 1.0
         {
             views = collectionSelf.visibleCells
         }
-        else {
+        else if self.alpha == 1.0 {
             views = subviews
         }
         
